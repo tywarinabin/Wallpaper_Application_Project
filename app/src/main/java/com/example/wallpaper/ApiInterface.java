@@ -1,0 +1,25 @@
+package com.example.wallpaper;
+
+import static com.example.wallpaper.APIUtilities.API;
+
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Headers;
+import retrofit2.http.Query;
+
+public interface ApiInterface {
+    String BASE_URL = "https://api.pixels.com/v1/";
+    @Headers("Authorization: "+ API)
+    @GET("curated")
+    Call<SearchModel> getImages(
+            @Query("page") int page,
+            @Query("per_page") int per_page
+    );
+    @Headers("Authorization: "+ API)
+    @GET("search")
+    Call<SearchModel> getSearchImage(
+            @Query("query") String query,
+            @Query("page") int page,
+            @Query("per_page") int per_page
+    );
+}
